@@ -1,8 +1,11 @@
 import React from 'react'
+import Comment from './Comment'
 
 function Adventure() {
   return (
-    <div>Adventure</div>
+    <div>
+      <Comment />
+    </div>
   )
 }
 
