@@ -31,6 +31,22 @@ function SideBar() {
           New Adventure
         </button>
       </div>
+      <div className="text-white flex items-center justify-center mt-auto hoverAnimation xl:ml-auto xl:-mr-auto"
+        //onClick={signOut}
+        >
+        <img
+          //src={session.user.image}
+          src='https://lh3.googleusercontent.com/ogw/ADea4I7rslVwqHV5lC9Pf82Wb-efP61DheAUz0Ic2E7eIw=s32-c-mo'
+          className="h-10 w-10 xl:mr-2.5"
+        />
+        <div className="hidden xl:inline leading-5">
+          <h4 className="font-bold">Jason Matta{//session.user.name
+          }</h4>
+          <p className="text-white">@JasonMatta{//session.user.tag
+          }</p>
+        </div>
+        <DotsHorizontalIcon className="h-5 hidden xl:inline ml-10" />
+      </div>
     </div>
   )
 }
