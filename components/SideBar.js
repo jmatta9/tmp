@@ -27,6 +27,9 @@ function SideBar() {
         <SideBarLink text="Favorites" Icon={BookmarkIcon} />
         <SideBarLink text="Profile" Icon={UserIcon} />
         <SideBarLink text="More" Icon={DotsHorizontalIcon} />
+        <button className="hidden xl:flex items-center justify-center space-x-3 border-2 border-white text-[#FFFF33] w-60 h-[58px] text-lg font-bold hover:bg-[#72edfe] hover:border-[#ec058e] hover:text-[#ec058e]">
+          New Adventure
+        </button>
       </div>
     </div>
   )
