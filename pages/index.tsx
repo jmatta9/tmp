@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import SideBar from '../components/SideBar'
+import Feed from '../components/Feed'
 
 const Home: NextPage = () => {
   return (
@@ -11,7 +12,7 @@ const Home: NextPage = () => {
       </Head>
       <main className="bg-[#051014] min-h-screen flex max-w-[1500px] mx-auto">
         <SideBar />
-        {/* <mainFeed /> */}
+        <Feed />
         {/* <widgets /> */}
         {/* <model /> */}
       </main>
