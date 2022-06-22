@@ -1,16 +1,16 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import TopBar from '../components/TopBar'
+import SideBar from '../components/SideBar'
 
 const Home: NextPage = () => {
   return (
     <div className="">
       <Head>
-        <title>TTMMP</title>
-        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/5/5a/" />
+        <title>TMP</title>
+        <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/1020/1020566.png" />
       </Head>
       <main className="bg-[#051014] min-h-screen flex max-w-[1500px] mx-auto">
-        <TopBar />
+        <SideBar />
         {/* <mainFeed /> */}
         {/* <widgets /> */}
         {/* <model /> */}

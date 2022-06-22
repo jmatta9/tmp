@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["rb.gy", "upload.wikimedia.org"],
+    domains: ["rb.gy", "cdn-icons-png.flaticon.com"],
     formats: ['image/avif', 'image/webp'],
   },
 }
