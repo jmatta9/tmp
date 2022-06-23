@@ -58,7 +58,7 @@ function Comment({ setShowComment }) {
           )}
 
         <div className="flex items-center justify-between pt-2.5">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 w-full">
               <div className="icon">
                 <FaRegComment className="text-xl" onClick={()=>setShowComment(false)}/>
               </div>
@@ -90,10 +90,12 @@ function Comment({ setShowComment }) {
                     }}
                   />
                   )}
+                  <div className="flex w-full justify-end">
                   <button
-                    className="border w-32 h-10 border-[#ec058e] text-white px-4 py-1.5 font-bold disabled:opacity-50 disabled:cursor-default hoverAnimation"
-                    disabled={!comment && !selectedFile}
+                    className="inline border w-36 h-10 border-[#ec058e] text-white px-4 py-1.5 font-bold disabled:opacity-50 disabled:cursor-default hoverAnimation"
+                    disabled={!comment.trim() && !selectedFile}
                   >Full Send</button>
+                  </div>
               </div>
         </div>
       </div>
