@@ -7,6 +7,7 @@ const Picker = dynamic(() => import('emoji-picker-react'), { ssr: false });
 function Comment({ setShowComment }) {
   const [comment, setComment] = useState('')
   const [selectedFile, setSelectedFile] = useState(null)
+  const [loading, setLoading] = useState(false)
   const [showEmojis, setShowEmojis] = useState(false)
   const filePickerRef = useRef(null)
 
@@ -24,8 +25,14 @@ function Comment({ setShowComment }) {
     setComment(comment + emojiObject.emoji)
   };
 
-  function addImage() {
-
+  function addImage(e) {
+    const reader = new FileReader();
+    if (e.target.files[0]) {
+      reader.readAsDataURL(e.target.files[0]);
+    }
+    reader.onload = (readerEvent) => {
+      setSelectedFile(readerEvent.target.result);
+    };
   }
   return (
     <div className={`border-b border-[#72edfe] p-3 flex space-x-3`}>
@@ -36,6 +43,7 @@ function Comment({ setShowComment }) {
         //onClick={signOut}
       />
       <div className="w-full divide-y divide-[#72edfe]">
+        <div className={`${selectedFile && "pb-7"} ${comment && "space-y-2.5"}`}>
           <textarea
             value={comment}
             id="comment"
@@ -45,15 +53,17 @@ function Comment({ setShowComment }) {
             onChange={handleChange}
           />
           {selectedFile && (
+            <div className="flex items-center justify-center w-full">
             <div className="relative">
-              <div id='x' className="absolute w-8 h-8 hover:bg-[#39ff14] bg-opacity-100 flex items-center justify-center top-1 left-1 cursor-pointer" onClick={handleClick}>
-              <HiX className="text-white h-5"/>
-                <img
-                  src={selectedFile}
-                  alt=""
-                  className="rounded-2xl max-h-80 object-contain"
-                  />
+              <div id='x' className="absolute text-white hover:text-[#ec058e] w-8 h-8 bg-opacity-100 flex items-center justify-center top-1 left-1 cursor-pointer hover:bg-[#72edfe] " onClick={handleClick}>
+              <HiX className="h-5"/>
               </div>
+              <img
+                src={selectedFile}
+                alt=""
+                className="max-h-80 object-contain"
+              />
+            </div>
             </div>
           )}
 
@@ -97,6 +107,7 @@ function Comment({ setShowComment }) {
                   >Full Send</button>
                   </div>
               </div>
+            </div>
         </div>
       </div>
     </div>
