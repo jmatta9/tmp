@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { HiX } from 'react-icons/hi'
+import React, { useState, useRef } from 'react'
+import { HiX, HiOutlinePhotograph } from 'react-icons/hi'
 
 
 function Comment() {
   const [comment, setComment] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
+  const filePickerRef = useRef()
   function handleChange(e) {
     setComment(e.target.value);
   }
@@ -12,8 +13,16 @@ function Comment() {
     if(e.target.id === 'x') {
       setSelectedFile(null);
     }
+    if(e.target.id === 'addImage') {
+      setSelectedFile(null);
+    }
+  }
+
+  function addImage() {
 
   }
+
+
   return (
     <div className={`border-b border-[#72edfe] p-3 flex space-x-3`}>
       <img
@@ -44,6 +53,14 @@ function Comment() {
               </div>
             </div>
           )}
+        </div>
+        <div className="flex items-center justify-between pt-2.5">
+            <div className="flex items-center">
+              <div id='addImage' className="icon" onClick={handleClick}>
+                <HiOutlinePhotograph className="h-[22px] text-white" />
+                <input type="file" onChange={addImage} ref={filePickerRef} />
+              </div>
+            </div>
         </div>
       </div>
     </div>
