@@ -3,7 +3,7 @@ import Comment from './Comment'
 
 function Adventure() {
   return (
-    <div>
+    <div className="">
       <Comment />
     </div>
   )
