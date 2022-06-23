@@ -1,15 +1,17 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { HiX, HiOutlinePhotograph, HiOutlineEmojiHappy } from 'react-icons/hi'
-import { FaRegComment, FaRegCalendarCheck, FaFacebookSquare } from 'react-icons/fa'
-
+import { FaRegComment, FaRegCalendarCheck, FaShareSquare } from 'react-icons/fa'
+import dynamic from 'next/dynamic'
+const Picker = dynamic(() => import('emoji-picker-react'), { ssr: false });
 
 function Comment({ setShowComment }) {
-  const [comment, setComment] = useState('');
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [comment, setComment] = useState('')
+  const [selectedFile, setSelectedFile] = useState(null)
+  const [showEmojis, setShowEmojis] = useState(false)
   const filePickerRef = useRef(null)
 
   function handleChange(e) {
-    setComment(e.target.value);
+    setComment(e.target.value)
   }
 
   function handleClick(e) {
@@ -18,11 +20,13 @@ function Comment({ setShowComment }) {
     }
   }
 
+  function emojiClick(e, emojiObject) {
+    setComment(comment + emojiObject.emoji)
+  };
+
   function addImage() {
 
   }
-
-
   return (
     <div className={`border-b border-[#72edfe] p-3 flex space-x-3`}>
       <img
@@ -58,6 +62,13 @@ function Comment({ setShowComment }) {
               <div className="icon">
                 <FaRegComment className="text-xl" onClick={()=>setShowComment(false)}/>
               </div>
+
+              <div className="icon">
+                <FaRegCalendarCheck className="text-xl" />
+              </div>
+              <div className="icon">
+                <FaShareSquare className="text-xl" />
+              </div>
               <div id="addImage" className="icon" onClick={() => filePickerRef.current.click()}>
                 <HiOutlinePhotograph className="text-2xl" />
                 <input hidden type="file" onChange={addImage} ref={filePickerRef} />
@@ -65,13 +76,25 @@ function Comment({ setShowComment }) {
               <div className="icon" onClick={() => setShowEmojis(!showEmojis)}>
                 <HiOutlineEmojiHappy className="text-2xl" />
               </div>
-              <div className="icon">
-                <FaRegCalendarCheck className="text-xl" />
+                {showEmojis && (
+                  <Picker
+                  onEmojiClick={emojiClick}
+                    disableSkinTonePicker={true}
+                    searchPlaceholder={'Search...'}
+                    pickerStyle={{
+                      position: "absolute",
+                      marginTop: "380px",
+                      marginLeft: -56,
+                      maxWidth: "320px",
+                      borderRadius: "0px",
+                    }}
+                  />
+                  )}
+                  <button
+                    className="border w-32 h-10 border-[#ec058e] text-white px-4 py-1.5 font-bold disabled:opacity-50 disabled:cursor-default hoverAnimation"
+                    disabled={!comment && !selectedFile}
+                  >Full Send</button>
               </div>
-              <div className="icon">
-                <FaFacebookSquare className="text-xl" />
-              </div>
-            </div>
         </div>
       </div>
     </div>
@@ -79,6 +102,3 @@ function Comment({ setShowComment }) {
 }
 
 export default Comment
-
-
-//from top div overflow-y-scroll scrollbar-hide

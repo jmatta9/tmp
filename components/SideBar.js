@@ -21,7 +21,7 @@ function SideBar() {
         <SideBarLink text="Smoke Signal" Icon={FaCloudMeatball} />
         <SideBarLink text="Stoked On" Icon={FaFire} />
         <SideBarLink text="Mtn Cred" Icon={FaSkiing} />
-        <button className="hidden sm:flex sm:w-14 mt-4 items-center justify-center border border-white text-[#FFFF33] xl:w-60 h-[58px] text-lg font-bold hover:bg-[#72edfe] hover:border-[#ec058e] hover:text-[#ec058e]">
+        <button className="hidden border border-[#ec058e] sm:flex sm:w-14 mt-4 items-center justify-center  text-white xl:w-60 h-[58px] text-lg font-bold hover:bg-[#72edfe] hover:border-[#ec058e] hover:text-[#ec058e]">
           <span className="sm:hidden xl:inline">New Adventure!</span>
           <span className="sm:inline xl:hidden">NA!</span>
         </button>

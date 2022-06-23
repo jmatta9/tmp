@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Comment from './Comment'
-import { FaRegCommentDots, FaRegCalendarCheck, FaFacebookSquare } from 'react-icons/fa'
+import { FaRegCommentDots, FaRegCalendarCheck, FaShareSquare } from 'react-icons/fa'
 
 function Adventure() {
   const [showComment, setShowComment] = useState(false)
@@ -25,7 +25,7 @@ function Adventure() {
                 <FaRegCalendarCheck className="text-xl" />
               </div>
               <div className="icon">
-                <FaFacebookSquare className="text-xl" />
+                <FaShareSquare className="text-xl" />
               </div>
             </div>
           </div>
