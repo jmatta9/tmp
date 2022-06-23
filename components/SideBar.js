@@ -5,7 +5,7 @@ import { MdOutlineExplore } from 'react-icons/md'
 import { BsFillBinocularsFill } from 'react-icons/bs'
 import SideBarLink from './SideBarLink'
 
-function SideBar() {
+function SideBar({ newAdventure, setNewAdventure }) {
   return (
     <div className="hidden sm:flex flex-col items-center xl:items-center xl:w-[400px] p-2 fixed h-full">
       <div className="flex bg-[#FFFF33] items-center justify-center w-14 h-14 hoverAnimation p-0 xl:ml-20">

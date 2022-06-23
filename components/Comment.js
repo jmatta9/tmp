@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { HiX, HiOutlinePhotograph, HiOutlineEmojiHappy } from 'react-icons/hi'
-import { FaRegComment, FaRegCalendarCheck, FaShareSquare } from 'react-icons/fa'
+import { FaRegComment } from 'react-icons/fa'
 import dynamic from 'next/dynamic'
 const Picker = dynamic(() => import('emoji-picker-react'), { ssr: false });
 
@@ -11,14 +11,15 @@ function Comment({ setShowComment }) {
   const [showEmojis, setShowEmojis] = useState(false)
   const filePickerRef = useRef(null)
 
-  function handleChange(e) {
-    setComment(e.target.value)
+  function sendComment() {
+    if (loading) return
+    setLoading(true)
+
+
   }
 
-  function handleClick(e) {
-    if(e.target.id === 'x') {
-      setSelectedFile(null);
-    }
+  function handleChange(e) {
+    setComment(e.target.value)
   }
 
   function emojiClick(e, emojiObject) {
@@ -43,7 +44,7 @@ function Comment({ setShowComment }) {
         //onClick={signOut}
       />
       <div className="w-full divide-y divide-[#72edfe]">
-        <div className={`${selectedFile && "pb-7"} ${comment && "space-y-2.5"}`}>
+        <div className={`${comment && "space-y-2.5"}`}>
           <textarea
             value={comment}
             id="comment"
@@ -55,7 +56,7 @@ function Comment({ setShowComment }) {
           {selectedFile && (
             <div className="flex items-center justify-center w-full">
             <div className="relative">
-              <div id='x' className="absolute text-white hover:text-[#ec058e] w-8 h-8 bg-opacity-100 flex items-center justify-center top-1 left-1 cursor-pointer hover:bg-[#72edfe] " onClick={handleClick}>
+              <div id='x' className="absolute text-white hover:text-[#ec058e] w-8 h-8 bg-opacity-100 flex items-center justify-center top-1 left-1 cursor-pointer" onClick={()=>setSelectedFile(null)}>
               <HiX className="h-5"/>
               </div>
               <img
@@ -71,13 +72,6 @@ function Comment({ setShowComment }) {
             <div className="flex items-center space-x-3 w-full">
               <div className="icon">
                 <FaRegComment className="text-xl" onClick={()=>setShowComment(false)}/>
-              </div>
-
-              <div className="icon">
-                <FaRegCalendarCheck className="text-xl" />
-              </div>
-              <div className="icon">
-                <FaShareSquare className="text-xl" />
               </div>
               <div id="addImage" className="icon" onClick={() => filePickerRef.current.click()}>
                 <HiOutlinePhotograph className="text-2xl" />
@@ -102,7 +96,7 @@ function Comment({ setShowComment }) {
                   )}
                   <div className="flex w-full justify-end">
                   <button
-                    className="inline border w-36 h-10 border-[#ec058e] text-white px-4 py-1.5 font-bold disabled:opacity-50 disabled:cursor-default hoverAnimation"
+                    className="inline border w-36 h-10 border-[#ec058e] text-white px-4 py-1.5 font-bold disabled:opacity-50 disabled:cursor-default hoverAnimation hover:bg-[#72edfe]"
                     disabled={!comment.trim() && !selectedFile}
                   >Full Send</button>
                   </div>
